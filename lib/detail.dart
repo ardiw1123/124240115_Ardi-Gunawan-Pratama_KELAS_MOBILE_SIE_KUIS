@@ -20,14 +20,14 @@ class _DetailPageState extends State<DetailPage> {
 
   // Jumlah pcs dari input, kosong dianggap 0
   int get _qty => int.tryParse(_qtyController.text) ?? 0;
-  int get _price => int.tryParse(_priceController.text) ?? 0;
+  int get _price => int.tryParse(_priceController.text) ?? item.price;
   String get _deskripsi => _deskripsiController.text;
 
   @override
   void initState() {
     super.initState();
     _qtyController = TextEditingController(text: item.stock.toString());
-    _priceController = TextEditingController(text: item.stock.toString());
+    _priceController = TextEditingController(text: item.price.toString());
     _deskripsiController = TextEditingController(text: item.description);
   }
 
@@ -82,11 +82,9 @@ class _DetailPageState extends State<DetailPage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  // const SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      // const Text('Total', style: TextStyle(fontSize: 16)),
                       Text(
                         'Rp ${item.formattedPrice} / pcs',
                         style: const TextStyle(
@@ -97,14 +95,6 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                     ],
                   ),
-                  // Text(
-                  //   'Rp ${item.price} / pcs',
-                  //   style: const TextStyle(
-                  //     fontSize: 20,
-                  //     color: Colors.green,
-                  //     fontWeight: FontWeight.w600,
-                  //   ),
-                  // ),
                   const SizedBox(height: 16),
                   TextField(
                     controller: _deskripsiController,
